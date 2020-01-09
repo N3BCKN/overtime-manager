@@ -8,7 +8,6 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rails'
-require 'factory_bot'
 
 include Warden::Test::Helpers
 Warden.test_mode!
@@ -48,7 +47,7 @@ RSpec.configure do |config|
   config.after(:each) { DatabaseCleaner.clean }
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  config.include FactoryBot::Syntax::Methods
+  config.include FactoryGirl::Syntax::Methods
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

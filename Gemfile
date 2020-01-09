@@ -44,7 +44,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'database_cleaner'
   gem 'rspec-rails'
-  gem 'factory_bot'
+  gem 'factory_girl_rails', '~> 4.7'
 end
 
 group :development do
