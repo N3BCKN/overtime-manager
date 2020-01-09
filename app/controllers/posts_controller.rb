@@ -22,7 +22,6 @@ class PostsController < ApplicationController
 		else
 			render :new, notice: "Post could not be created"
 		end
-
 	end
 
 	private
