@@ -36,6 +36,8 @@ gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'gritter'
+gem 'administrate'
+gem 'bourbon'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
