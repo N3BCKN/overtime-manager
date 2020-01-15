@@ -2,6 +2,7 @@
 	<h1>Overtime tracker</h1>
 </div>
 
+<% if current_user %>
 <ul class="custom-nav nav nav-tabs">
 	<li class="nav-item">
 		<%= link_to "Home", root_path, :class => "nav-link #{active?(root_path)}" %>
@@ -13,11 +14,14 @@
 		<%= link_to "Add New Entry", new_post_path, :class => "nav-link #{active?(new_post_path)}", :id =>"new_post_from_nav" %>
 	</li>
 	<li class="nav-item dropdown ml-md-auto">
-	<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Account</a>
+	<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Options</a>
 		<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-			<%= link_to "Admin only", root_path, :class => "dropdown-item" %>
-		<div class="dropdown-divider"></div> 
+			<% if current_user.try(:type) == 'AdminUser' %> 
+				<%= link_to "Admin only", root_path, :class => "dropdown-item" %>
+				<div class="dropdown-divider"></div>
+			<% end %> 
 			<%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
 		</div>
 	</li>
 </ul>
+<% end %>
