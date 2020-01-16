@@ -1,98 +1,102 @@
 require 'rails_helper'
 
 describe 'navigate' do
-	before do
-		user = FactoryGirl.create(:user)
-		login_as(user, :scope => :user)
-	end
+  before do
+    @user = FactoryGirl.create(:user)
+    login_as(@user, :scope => :user)
+  end
 
-	describe 'index' do
-		it 'should reach index page' do
-			visit posts_path
-			expect(page.status_code).to eq(200)
-		end
+  describe 'index' do
+    before do
+      visit posts_path
+    end
 
-		it 'should have content' do
-			visit posts_path
-			expect(page).to have_content(/Posts/)
-		end
+  	it 'can be reached successfully' do
+  		expect(page.status_code).to eq(200)
+  	end
 
-		# it 'should listed posts on site' do
-		# 	post1 = FactoryGirl.create(:post)
-		# 	post2 = FactoryGirl.create(:second_post)
-		# 	visit posts_path
-		# 	expect(page).to have_content(/Post1|Post2/)
-		# end 
-	end
-	describe 'creation' do
-		before do
-			visit new_post_path
-		end
+  	it 'has a title of Posts' do
+  		expect(page).to have_content(/Posts/)
+  	end
 
-		it 'should reach the form page' do
-			visit new_post_path
-			expect(page.status_code).to eq(200)
-		end
+    it 'has a list of posts' do
+      post1 = FactoryGirl.build_stubbed(:post)
+      post2 = FactoryGirl.build_stubbed(:second_post)
+      visit posts_path
+      expect(page).to have_content(/Rationale|content/)
+    end
+  end
 
-		it 'should be able to create new post' do
+  describe 'new' do
+    it 'has a link from the homepage' do
+      visit root_path
 
-			fill_in 'post[date]', with: Date.today
-			fill_in 'post[rationale]', with: "New Rationale"
+      click_link("new_post_from_nav")
+      expect(page.status_code).to eq(200)
+    end
+  end
 
-			click_on "Save"
-			
-			expect(page).to have_content("New Rationale")
-		end
+  describe 'delete' do
+    it 'can be deleted' do
+      @post = FactoryGirl.create(:post)
+      visit posts_path
 
-		it 'should have user assosiated with' do
-			fill_in 'post[date]', with: Date.today
-			fill_in 'post[rationale]', with: "Rationale %$^!%*&VDDF"
+      click_link("delete_post_#{@post.id}_from_index")
+      expect(page.status_code).to eq(200)
+    end
+  end
 
-			click_on "Save"
-			expect(User.last.posts.last.rationale).to eq("Rationale %$^!%*&VDDF")
-		end 
-	end
+  describe 'creation' do
+  	before do
+  		visit new_post_path
+  	end
 
-	describe 'new' do 
-		it 'should has a link on homepage' do
-			visit root_path
+  	it 'has a new form that can be reached' do
+  		expect(page.status_code).to eq(200)
+  	end
 
-			click_link("new_post_from_nav")
-			expect(page.status_code).to eq(200)
-		end 
-	end 
+  	it 'can be created from new form page' do
+      fill_in 'post[date]', with: Date.today
+      fill_in 'post[rationale]', with: "Some rationale"
+      click_on "Save"
 
-	describe 'delete' do
-		it 'can be deleted' do
-			@post = FactoryGirl.create(:post)
-			visit posts_path
+      expect(page).to have_content("Some rationale")
+  	end
 
-			click_link("delete_post_#{@post.id}_from_index")
-			expect(page.status_code).to eq(200)
-		end 
-	end 
+    it 'will have a user associated it' do
+      fill_in 'post[date]', with: Date.today
+      fill_in 'post[rationale]', with: "User Association"
+      click_on "Save"
 
-	describe 'edition' do
-		before do 
-			@post = FactoryGirl.create(:post)
-		end 
+      expect(User.last.posts.last.rationale).to eq("User Association")
+    end
+  end
 
-		it 'should reach edit post section' do
+  describe 'edit' do
+    before do
+      @edit_user = User.create(first_name: "asdf", last_name: "asdf", email: "asdfasdf@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+      login_as(@edit_user, :scope => :user)
+      @edit_post = Post.create(date: Date.today, rationale: "asdf", user_id: @edit_user.id)
+    end
 
-			visit posts_path
-			click_link("Edit")
-			expect(page.status_code).to eq(200	)
-		end
+    it 'can be edited' do
+      visit edit_post_path(@edit_post)
 
-		it 'should edit post' do
-			visit edit_post_path(@post)
+      fill_in 'post[date]', with: Date.today
+      fill_in 'post[rationale]', with: "Edited content"
+      click_on "Save"
 
-			fill_in 'post[date]', with: Date.today
-			fill_in 'post[rationale]', with: "Rationale Edited"
+      expect(page).to have_content("Edited content")
+    end
 
-			click_on "Save"
-			expect(page).to have_content("Rationale Edited")
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      non_authorized_user = FactoryGirl.create(:non_authorized_user)
+      login_as(non_authorized_user, :scope => :user)
 
-		end 
-	end 
-end 
+      visit edit_post_path(@edit_post)
+
+      expect(current_path).to eq(root_path)
+    end
+  end
+end
