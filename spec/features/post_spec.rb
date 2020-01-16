@@ -25,6 +25,17 @@ describe 'navigate' do
       visit posts_path
       expect(page).to have_content(/Rationale|content/)
     end
+
+    it 'has a scope so only creator can see its posts' do
+    	post1 = FactoryGirl.build_stubbed(:post)
+      	post2 = FactoryGirl.build_stubbed(:second_post)
+      	user  = User.create(email: "qwerty@test.com", password: "qwerty", password_confirmation: "qwerty", first_name: "Temp", last_name: "User")
+
+      	another_post = Post.create(date: Date.today, rationale: "This should not be here", user: user)
+
+      	visit posts_path
+      	expect(page).to_not have_content(/This should not be here/)
+    end 
   end
 
   describe 'new' do
@@ -39,6 +50,7 @@ describe 'navigate' do
   describe 'delete' do
     it 'can be deleted' do
       @post = FactoryGirl.create(:post)
+      @post.update(user_id: @user.id)
       visit posts_path
 
       click_link("delete_post_#{@post.id}_from_index")
