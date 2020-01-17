@@ -20,15 +20,16 @@ describe 'navigation' do
 			expect(@post.reload.status).to eq("approved") 
 		end 
 
-		# it 'cannot be edited by admin' do
-		# 	logout(:user)
-		# 	@user = FactoryGirl.create(:user)
-		# 	login_as(@user, :scope => :user)
+		it 'should be locked after post status is approved' do
+			logout(:user)
+			user = FactoryGirl.create(:user)
+			login_as(user, :scope => :user)
 
-		# 	visit edit_post_path(@post)
+			@post.update(user_id: user.id, status: "approved")
 
-		# 	expect(page).to_not have_content()
-		# end 
+			visit edit_post_path(@post)
+			expect(current_path).to eq(root_path) 
+		end 
 	end
 
 end 

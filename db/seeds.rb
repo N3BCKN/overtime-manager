@@ -4,7 +4,7 @@ AdminUser.create!(email: "test1@test.com", password: "qwerty", password_confirma
 
 
 150.times do |post|
-	Post.create(date: Date.today, rationale: "#{post} rationale created", user: User.first)
+	Post.create(date: Date.today, rationale: "#{post} rationale created", user: User.first, overtime_request: 2.5)
 end 
 
 puts "150 posts created"

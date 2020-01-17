@@ -31,7 +31,7 @@ describe 'navigate' do
       	post2 = FactoryGirl.build_stubbed(:second_post)
       	user  = User.create(email: "qwerty@test.com", password: "qwerty", password_confirmation: "qwerty", first_name: "Temp", last_name: "User")
 
-      	another_post = Post.create(date: Date.today, rationale: "This should not be here", user: user)
+      	another_post = Post.create(date: Date.today, rationale: "This should not be here", user: user, overtime_request: 3.5)
 
       	visit posts_path
       	expect(page).to_not have_content(/This should not be here/)
