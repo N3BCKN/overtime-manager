@@ -40,6 +40,7 @@ gem 'gritter'
 gem 'administrate'
 gem 'bourbon'
 gem 'pundit'
+gem 'twilio-ruby', '~> 5.31.2'
 
 
 # Reduces boot times through caching; required in config/boot.rb
