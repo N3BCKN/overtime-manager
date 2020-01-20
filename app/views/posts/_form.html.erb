@@ -6,6 +6,11 @@
 					<%= js add_gritter(error, :image => :notice, :title => "Pay attention!", :sticky => false) %>
 				<% end %>
 			<% end %>
+				
+				<div class="form-group">					 
+					<%= f.label :overtime_request %>
+					<%= f.text_field :overtime_request, :class => "form-control" %>
+				</div>
 
 				<div class="form-group">					 
 					<%= f.label :date %>
