@@ -25,6 +25,7 @@ class UserDashboard < Administrate::BaseDashboard
     type: Field::String.with_options(searchable: false),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
+    phone_number: Field::DateTime.with_options(searchable: false)
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -44,8 +45,8 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
   posts
-  id
   email
+  phone_number
   password
   reset_password_token
   reset_password_sent_at
