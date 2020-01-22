@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts
+  has_many :audit_logs
 
   PHONE_REGEX = /\A[0-9]*\Z/
 
