@@ -42,7 +42,7 @@ gem 'bourbon'
 gem 'pundit'
 gem 'twilio-ruby', '~> 5.31.2'
 gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'kaminari'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
