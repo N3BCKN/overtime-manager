@@ -4,6 +4,10 @@ class PostsController < ApplicationController
 
 	def index
 		@posts = Post.post_by(current_user).page(params[:page]).per(10)
+		respond_to do |format|
+	    	format.js  { render 'index.js.erb' }
+	    	format.html
+	  	end
 	end
 
 	def show
