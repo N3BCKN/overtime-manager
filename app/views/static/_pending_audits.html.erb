@@ -1,3 +1,8 @@
 <% pending_audit_confirmations.each do |pac|%>
-	<%= link_to "I confirm that I dit not perform any overtime for the week of: #{pac.start_date}", root_path, :class => "btn btn-primary btn-block btn-lg", data: {confirm: "are you sure?"} %>
+	<%= link_to "I confirm that I dit not perform any overtime for the week of: #{pac.start_date}", 
+	confirm_audit_log_path(pac), 
+	:class => "btn btn-primary btn-block btn-lg", 
+	:id => "confirm_#{pac.id}",  
+	data: {confirm: "Are you sure you want to confirm that you did not perform any overtime?"} 
+%>
 <% end %>

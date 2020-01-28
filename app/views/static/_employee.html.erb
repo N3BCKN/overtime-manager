@@ -1,11 +1,16 @@
 <div class='container-fluid'>
 	<div class='row'>
-		<div class='pending-homepage employee-blocks'>
+		<% if @pending_audit_confirmations.count > 0 %>
+		<div class='col-md-12 pending-homepage employee-blocks'>
 			<h3>Pendint Audit Confirmations</h3>
 			<%= render 'pending_audits', {pending_audit_confirmations: @pending_audit_confirmations} %>
 		</div>
-		<div class='col-md-5 column pending-homepage employee-blocks'>
-			qwery
+		<% end %>
+
+		<div class='col-md-12 column pending-homepage employee-blocks'>
+			<h3>Request Overtime</h3>
+
+			<%= link_to "Request Overtime Approval", new_post_path, :class => "btn btn-primary btn-block btn-lg" %>
 		</div>
 	</div>
 </div>
