@@ -48,4 +48,16 @@ RSpec.describe User, type: :model do
       expect(@user.full_name).to eq('DOE, JOHN')
     end
   end
+
+  describe 'relations' do
+    it 'should allows for admins to be associeted with multiple users' do
+      employee_1 = FactoryGirl.create(:user)
+      employee_2 = FactoryGirl.create(:user)
+      admin = FactoryGirl.create(:admin_user)
+      Hand.create!(user: admin, hand: employee_1)
+      Hand.create!(user: admin, hand: employee_2)
+
+      expect(admin.hands.count).to eq(2)
+    end
+  end
 end
