@@ -113,6 +113,9 @@ GEM
     ffi (1.12.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    glyphicons-rails (0.1.2)
+      sass (~> 3.3)
+      sass-rails
     gritter (1.2.0)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -298,6 +301,7 @@ DEPENDENCIES
   devise (~> 4.2)
   dotenv-rails
   factory_girl_rails (~> 4.7)
+  glyphicons-rails (~> 0.1.2)
   gritter
   jbuilder (~> 2.5)
   jquery-rails
