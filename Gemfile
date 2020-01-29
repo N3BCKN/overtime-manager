@@ -44,6 +44,7 @@ gem 'twilio-ruby', '~> 5.31.2'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'kaminari'
 gem 'glyphicons-rails', '~> 0.1.2'
+gem 'rubocop', '~> 0.79.0', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
