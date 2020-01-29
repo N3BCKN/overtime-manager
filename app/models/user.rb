@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :posts
   has_many :audit_logs
 
-  
   has_many :hands_associations, class_name: 'Hand'
   has_many :hands, through: :hands_associations
 
