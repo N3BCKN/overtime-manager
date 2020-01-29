@@ -22,12 +22,7 @@
 			 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
 			<ul class="dropdown-menu">
 				
-				<% if current_user.try(:type) == 'AdminUser' %>
-				<li>
-					<%= link_to "Admin Dashboard", admin_root_path %>
-				</li>
-				<li class="divider"></li>
-				<% end %>
+				<%= render 'shared/admin_dropdown' if admin? %>
 
 				<li>
 					<%= link_to "Logout", destroy_user_session_path, method: :delete %>
