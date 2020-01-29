@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -32,35 +34,35 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'devise', '~> 4.2'
-gem 'bootstrap-sass', '~> 3.4.1'
-gem 'sassc-rails', '>= 2.1.0'
-gem 'jquery-rails'
-gem 'gritter'
 gem 'administrate'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'bourbon'
-gem 'pundit'
-gem 'twilio-ruby', '~> 5.31.2'
-gem 'dotenv-rails', groups: [:development, :test]
-gem 'kaminari'
+gem 'devise', '~> 4.2'
+gem 'dotenv-rails', groups: %i[development test]
 gem 'glyphicons-rails', '~> 0.1.2'
+gem 'gritter'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'pundit'
 gem 'rubocop', '~> 0.79.0', require: false
+gem 'sassc-rails', '>= 2.1.0'
+gem 'twilio-ruby', '~> 5.31.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
-  gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.7'
+  gem 'rspec-rails'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -75,4 +77,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

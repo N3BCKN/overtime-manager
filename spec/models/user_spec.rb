@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -6,9 +8,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'creation' do
-  	it 'can be created' do
-  		expect(@user).to be_valid
-  	end
+    it 'can be created' do
+      expect(@user).to be_valid
+    end
   end
 
   describe 'validation' do
@@ -20,13 +22,13 @@ RSpec.describe User, type: :model do
 
     it 'cannot be created without last_name' do
       @user.last_name = nil
-      
+
       expect(@user).to_not be_valid
     end
 
     it 'cannot be created without phone_number' do
       @user.phone_number = nil
-      
+
       expect(@user).to_not be_valid
     end
 
@@ -39,11 +41,11 @@ RSpec.describe User, type: :model do
       @user.phone_number = '12345678901'
       expect(@user).to_not be_valid
     end
-  end 
+  end
 
   describe 'custom methods' do
     it 'should combine first name and the last name together' do
-      expect(@user.full_name).to eq("DOE, JOHN")
-    end 
-  end  
+      expect(@user.full_name).to eq('DOE, JOHN')
+    end
+  end
 end

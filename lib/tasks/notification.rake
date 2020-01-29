@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 namespace :notification do
-  desc "Send SMS notification to employees asking them to log if they have overtime"
+  desc 'Send SMS notification to employees asking them to log if they have overtime'
   task sms: :environment do
- 
   end
 
-  desc "Sends mail notification to managers (admin users) each day to inform of pending overtime requests"
+  desc 'Sends mail notification to managers (admin users) each day to inform of pending overtime requests'
   task manager_email: :environment do
     submitted_posts = Post.submitted
     admin_users = AdminUser.all
@@ -15,5 +16,4 @@ namespace :notification do
       end
     end
   end
-
 end

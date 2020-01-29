@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -36,7 +38,7 @@ class ApplicationPolicy
 
   def admin_types
     ['AdminUser']
-  end 
+  end
 
   class Scope
     attr_reader :user, :scope

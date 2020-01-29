@@ -1,3 +1,4 @@
-class AdminUser < User
+# frozen_string_literal: true
 
-end 
+class AdminUser < User
+end

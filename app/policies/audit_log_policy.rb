@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 class AuditLogPolicy < ApplicationPolicy
   def index?
-  	return true if admin?
+    return true if admin?
   end
 
   def confirm?
-  	record.user_id == user.id 
+    record.user_id == user.id
   end
 
   private
 
   def admin?
-  		admin_types.include?(user.type)
+    admin_types.include?(user.type)
   end
 end

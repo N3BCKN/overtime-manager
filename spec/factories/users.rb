@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
-	sequence :email do |n|
+  sequence :email do |n|
     "test#{n}@example.com"
   end
 
@@ -7,26 +9,26 @@ FactoryGirl.define do
     first_name 'John'
     last_name 'Doe'
     email { generate :email }
-    password "123456QW"
-    password_confirmation "123456QW"
-    phone_number "5551444333"
+    password '123456QW'
+    password_confirmation '123456QW'
+    phone_number '5551444333'
   end
 
-  factory :admin_user, class: "AdminUser" do
+  factory :admin_user, class: 'AdminUser' do
     first_name 'Admin'
     last_name 'User'
     email { generate :email }
-    password "123456QW"
-    password_confirmation "123456QW"
-    phone_number "5551444333"
+    password '123456QW'
+    password_confirmation '123456QW'
+    phone_number '5551444333'
   end
 
-    factory :non_authorized_user, class: "User" do
+  factory :non_authorized_user, class: 'User' do
     first_name 'not authozied'
     last_name 'User'
     email { generate :email }
-    password "123456QW"
-    password_confirmation "123456QW"
-    phone_number "5551444333"
+    password '123456QW'
+    password_confirmation '123456QW'
+    phone_number '5551444333'
   end
 end

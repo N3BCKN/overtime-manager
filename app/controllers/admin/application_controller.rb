@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # All Administrate controllers inherit from this `Admin::ApplicationController`,
 # making it the ideal place to put authentication logic or other
 # before_actions.
@@ -5,10 +7,9 @@
 # If you want to add pagination or other controller-level concerns,
 # you're free to overwrite the RESTful controller actions.
 module Admin
-
   def self.admin_types
     ['AdminUser']
-  end 
+  end
 
   class ApplicationController < Administrate::ApplicationController
     before_action :authenticate_user!
@@ -16,7 +17,7 @@ module Admin
 
     def authenticate_admin
       unless Admin.admin_types.include?(current_user.try(:type))
-        flash[:alert] = "You are not authorized to access this page."
+        flash[:alert] = 'You are not authorized to access this page.'
         redirect_to(root_path)
       end
     end

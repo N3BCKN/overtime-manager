@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FakeSms
   # Message = Struct.new(:message, :message)
   # @messages = []
