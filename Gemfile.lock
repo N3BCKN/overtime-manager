@@ -169,7 +169,8 @@ GEM
       ast (~> 2.4.0)
     pg (1.2.2)
     public_suffix (4.0.3)
-    puma (3.12.2)
+    puma (4.3.9)
+      nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     rack (2.1.2)
@@ -323,7 +324,7 @@ DEPENDENCIES
   kaminari
   listen (>= 3.0.5, < 3.2)
   pg
-  puma (~> 3.11)
+  puma (~> 4.3)
   pundit
   rails (~> 5.2.3)
   rspec-rails
